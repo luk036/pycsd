@@ -39,7 +39,7 @@ def to_csd(num: float, places: int) -> str:
         return "0"
     
     absnum = fabs(num)
-    n = 0 if absnum < 1.0 else cell(log(absnum * 1.5, 2))
+    n = 0 if absnum < 1.0 else ceil(log(absnum * 1.5, 2))
     csd_str = "0" if absnum < 1.0 else ""
     pow2n = pow(2.0, n - 1)
     while n > -places:
@@ -93,7 +93,7 @@ def to_csdfixed(num: float, nnz: int) -> str:
         return "0"
 
     absnum = fabs(num)
-    n = 0 if absnum < 1.0 else cell(log(absnum * 1.5, 2))
+    n = 0 if absnum < 1.0 else ceil(log(absnum * 1.5, 2))
     csd_str = "0" if absnum < 1.0 else ""
     pow2n = pow(2.0, n - 1)
     while n > 0 or (nnz > 0 and fabs(num) > 1e-100):
@@ -118,7 +118,7 @@ def to_csdfixed(num: float, nnz: int) -> str:
     return csd_str
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     assert to_csd(28.5, 2) == "+00-00.+0"
     assert to_csd(-0.5, 2) == "0.-0"
 
